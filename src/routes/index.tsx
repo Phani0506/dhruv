@@ -95,7 +95,7 @@ function Index() {
       </nav>
     </header>
     <AnimatePresence>{menu && <motion.div initial={{ opacity: 0 }} animate={{ opacity: 1 }} exit={{ opacity: 0 }} className="fixed inset-0 z-[60] bg-background/95 p-5 backdrop-blur-2xl md:hidden">
-      <div className="flex items-center justify-between"><span className="font-display font-bold">DV <span className="text-primary">// 01</span></span><Button variant="glass" size="icon" className="rounded-full" onClick={() => setMenu(false)}><X /></Button></div>
+      <div className="flex items-center justify-between"><span className="font-display font-bold">DV <span className="text-primary">// 01</span></span><Button variant="glass" size="icon" className="rounded-full" aria-label="Close menu" onClick={() => setMenu(false)}><X /></Button></div>
       <div className="mt-20 flex flex-col">{["Sounds","Gigs","Story","Press","Contact"].map((n,i) => <button key={n} onClick={() => jump(`#${n.toLowerCase()}`)} className="flex items-center justify-between border-b border-border py-5 text-left font-display text-4xl font-bold uppercase"><span><small className="mr-5 font-mono text-xs text-primary">0{i+1}</small>{n}</span><ArrowDownRight /></button>)}</div>
     </motion.div>}</AnimatePresence>
 
