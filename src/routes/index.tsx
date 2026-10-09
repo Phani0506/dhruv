@@ -7,11 +7,16 @@ import {
 } from "lucide-react";
 import { type FormEvent, type MouseEvent, useEffect, useState } from "react";
 import { Button } from "@/components/ui/button";
-import heroImage from "@/assets/drew-hero.jpg";
-import portraitImage from "@/assets/drew-portrait.jpg";
+import heroImage from "@/assets/dhruv_hero.png";
+import portraitImage from "@/assets/vadhi_hero.png";
 import neonHorizon from "@/assets/neon-horizon.jpg";
 import afterimage from "@/assets/afterimage.jpg";
 import velocity from "@/assets/velocity.jpg";
+
+import summerDays from "@/assets/summer-days.png";
+import lostVoices from "@/assets/lost-voices.png";
+import invisible from "@/assets/invisible.png";
+import beamingLights from "@/assets/beaming-lights.jpg";
 
 export const Route = createFileRoute("/")({
   head: () => ({ meta: [
@@ -26,14 +31,16 @@ export const Route = createFileRoute("/")({
 });
 
 const tracks = [
-  { title: "Neon Horizon", meta: "Original Mix · 06:42", art: neonHorizon },
-  { title: "Afterimage", meta: "Warehouse Edit · 05:58", art: afterimage },
-  { title: "Escape Velocity", meta: "Extended Mix · 07:16", art: velocity },
+  { title: "Summer Days", meta: "Original Mix · 05:40", art: summerDays },
+  { title: "Lost Voices", meta: "Extended Mix · 06:15", art: lostVoices },
+  { title: "Invisible", meta: "Club Mix · 05:52", art: invisible },
+  { title: "Beaming Lights", meta: "Festival Edit · 06:30", art: beamingLights },
 ];
 const releases = [
-  { title: "Neon Horizon", year: "2026", genre: "Melodic Techno", art: neonHorizon },
-  { title: "Afterimage", year: "2025", genre: "Peak Time", art: afterimage },
-  { title: "Escape Velocity", year: "2025", genre: "Progressive", art: velocity },
+  { title: "Summer Days", year: "2026", genre: "Melodic Bass", art: summerDays },
+  { title: "Lost Voices", year: "2026", genre: "Deep Techno", art: lostVoices },
+  { title: "Invisible", year: "2025", genre: "Peak Time", art: invisible },
+  { title: "Beaming Lights", year: "2025", genre: "Progressive", art: beamingLights },
 ];
 const upcoming = [
   { day: "24", month: "OCT", venue: "Sisyphos", city: "Berlin, DE", flag: "🇩🇪", stage: "Hammerhalle · 02:00", status: "LOW TICKETS" },
@@ -113,7 +120,7 @@ function Index() {
               {"DREW VARDY".split(" ").map(word => <motion.span key={word} variants={{hidden:{opacity:0,y:70},show:{opacity:1,y:0,transition:{duration:.7,ease:[.16,1,.3,1]}}}} className="block">{word}</motion.span>)}
             </motion.h1>
             <motion.div initial={{opacity:0,scale:.9}} animate={{opacity:1,scale:1}} transition={{delay:.35}} onMouseMove={tilt} onMouseLeave={e => e.currentTarget.style.transform=""} className="relative mx-auto -mt-2 aspect-[6/5] max-w-2xl overflow-hidden rounded-[42%_42%_12px_12px] border border-border transition-transform duration-200 will-change-transform">
-              <img src={heroImage} width={1536} height={1280} alt="Drew Vardy performing under green and magenta lasers" className="h-full w-full object-cover" />
+              <img src={heroImage} width={1080} height={1350} alt="Dhruv hero visual" className="h-full w-full object-cover" />
               <div className="absolute inset-x-0 bottom-0 h-1/3 bg-gradient-to-t from-background to-transparent" />
             </motion.div>
           </div>
@@ -121,17 +128,23 @@ function Index() {
         </div>
       </section>
 
-      <div className="overflow-hidden border-y border-border py-3"><div className="marquee flex w-max gap-10 whitespace-nowrap font-display text-sm font-bold uppercase text-muted-foreground">{Array(2).fill("NEW SINGLE — NEON HORIZON — OUT NOW ✦ BERLIN 52.5200° N ✦ WORLDWIDE BOOKINGS OPEN ✦ ").map((x,i)=><span key={i}>{x}</span>)}</div></div>
+      <div className="overflow-hidden border-y border-border py-3"><div className="marquee flex w-max gap-10 whitespace-nowrap font-display text-sm font-bold uppercase text-muted-foreground">{Array(2).fill("NEW SINGLE — SUMMER DAYS — OUT NOW ✦ BERLIN 52.5200° N ✦ WORLDWIDE BOOKINGS OPEN ✦ ").map((x,i)=><span key={i}>{x}</span>)}</div></div>
 
       <section id="sounds" className="mx-auto max-w-7xl px-4 py-24 md:px-8 md:py-36">
         <SectionHead number="01" label="DISCOGRAPHY" title="PRESS PLAY. ENTER THE VOID." />
-        <div className="grid gap-8 md:grid-cols-3">{releases.map((r,i)=><motion.article key={r.title} {...reveal} transition={{duration:.6,delay:i*.12}} className="group">
-          <div className="relative mb-5 aspect-square rounded-sm border border-border bg-card p-2 transition-transform duration-500 group-hover:-translate-y-2">
-            <div className="absolute right-[-5%] top-[8%] h-[84%] w-[84%] rounded-full border border-border bg-obsidian-soft transition-transform duration-500 group-hover:translate-x-7" />
+        <div className="grid grid-cols-4 gap-3 sm:gap-4 lg:gap-6">{releases.map((r,i)=><motion.article key={r.title} {...reveal} transition={{duration:.6,delay:i*.12}} className="group">
+          <div className="relative mb-3 aspect-square rounded-sm border border-border bg-card p-1.5 transition-transform duration-500 group-hover:-translate-y-2 sm:mb-4 sm:p-2">
+            <div className="absolute right-[-5%] top-[8%] h-[84%] w-[84%] rounded-full border border-border bg-obsidian-soft transition-transform duration-500 group-hover:translate-x-4 sm:group-hover:translate-x-6" />
             <img src={r.art} loading="lazy" width={1024} height={1024} alt={`${r.title} cover artwork`} className="relative h-full w-full rounded-sm object-cover" />
-            <Button variant="neon" size="icon" className="absolute bottom-5 right-5 h-12 w-12 rounded-full" onClick={()=>{setTrack(i);setPlaying(true)}} aria-label={`Play ${r.title}`}><Play className="fill-current" /></Button>
+            <Button variant="neon" size="icon" className="absolute bottom-2 right-2 h-8 w-8 rounded-full sm:bottom-4 sm:right-4 sm:h-11 sm:w-11" onClick={()=>{setTrack(i);setPlaying(true)}} aria-label={`Play ${r.title}`}><Play className="h-3.5 w-3.5 fill-current sm:h-5 sm:w-5" /></Button>
           </div>
-          <div className="flex items-start justify-between"><div><h3 className="font-display text-2xl font-bold uppercase">{r.title}</h3><p className="mt-1 text-[10px] uppercase text-muted-foreground">{r.genre} · {r.year}</p></div><ArrowDownRight className="text-primary" /></div>
+          <div className="flex items-start justify-between gap-1">
+            <div className="min-w-0">
+              <h3 className="truncate font-display text-sm font-bold uppercase sm:text-base md:text-lg lg:text-xl">{r.title}</h3>
+              <p className="mt-0.5 truncate text-[9px] uppercase text-muted-foreground sm:text-[10px]">{r.genre} · {r.year}</p>
+            </div>
+            <ArrowDownRight className="h-4 w-4 shrink-0 text-primary" />
+          </div>
         </motion.article>)}</div>
         <motion.div {...reveal} className="mt-12 flex flex-wrap gap-2">{["Spotify","Apple Music","Beatport","SoundCloud","YouTube Music"].map(s=><a key={s} href={`https://${s.toLowerCase().replace(" ","")}.com`} target="_blank" rel="noreferrer" className="rounded-full border border-border px-4 py-2 text-[10px] uppercase text-muted-foreground transition-colors hover:border-primary hover:text-primary">{s} ↗</a>)}</motion.div>
       </section>
@@ -150,7 +163,7 @@ function Index() {
       <section id="story" className="mx-auto max-w-7xl px-4 py-24 md:px-8 md:py-36">
         <SectionHead number="03" label="ORIGIN SIGNAL" title="BUILT IN THE UNDERGROUND." />
         <div className="grid gap-12 lg:grid-cols-[1fr_1.05fr]">
-          <motion.div {...reveal} className="relative"><div className="overflow-hidden rounded-[4px_80px_4px_4px] border border-border shadow-[18px_18px_0_var(--primary)]"><img src={portraitImage} loading="lazy" width={1024} height={1280} alt="Monochrome portrait of Drew Vardy" className="aspect-[4/5] w-full object-cover" /></div><span className="absolute -left-2 top-8 rounded-full bg-primary px-3 py-2 text-[9px] text-primary-foreground">BERLIN / DE</span></motion.div>
+          <motion.div {...reveal} className="relative"><div className="overflow-hidden rounded-[4px_80px_4px_4px] border border-border shadow-[18px_18px_0_var(--primary)]"><img src={portraitImage} loading="lazy" width={1115} height={1411} alt="Portrait of Vadhi" className="aspect-[4/5] w-full object-cover" /></div><span className="absolute -left-2 top-8 rounded-full bg-primary px-3 py-2 text-[9px] uppercase text-primary-foreground">Hyderabad / IND</span></motion.div>
           <motion.div {...reveal} className="flex flex-col justify-center"><p className="mb-7 font-display text-2xl font-semibold leading-tight md:text-4xl">From low-ceiling warehouse rooms to festival mainstages, Drew Vardy builds sets around one principle: tension should feel physical.</p><p className="max-w-2xl text-sm leading-7 text-muted-foreground">A producer, selector and live performer shaped by Berlin after-hours, Vardy welds melodic pressure to industrial rhythm. Every show is reconstructed in real time—part precision, part beautiful system failure.</p>
             <div className="my-10 grid grid-cols-3 border-y border-border py-6">{[["150+","SETS PLAYED"],["1.2M+","STREAMS"],["12","COUNTRIES"]].map(x=><div key={x[1]}><strong className="block font-display text-2xl text-primary md:text-4xl">{x[0]}</strong><span className="text-[8px] text-muted-foreground">{x[1]}</span></div>)}</div>
             <div className="flex flex-wrap gap-2">{["ABLETON CERTIFIED","AUDIO ENGINEER","RESIDENT / KONTINUUM","HYBRID LIVE"].map(x=><span key={x} className="rounded-full border border-border px-3 py-2 text-[9px]">{x}</span>)}</div>
@@ -161,8 +174,8 @@ function Index() {
 
       <section id="press" className="overflow-hidden bg-obsidian-soft/50 py-24 md:py-36"><div className="mx-auto max-w-7xl px-4 md:px-8"><SectionHead number="04" label="REEL VAULT" title="LIVE. UNFILTERED." /></div>
         <div className="flex snap-x gap-4 overflow-x-auto px-4 pb-6 md:px-[max(2rem,calc((100vw-80rem)/2))]">{[
-          [heroImage,"BERLIN / 04:17","Warehouse pressure"],[neonHorizon,"AMSTERDAM / 01:42","The drop lands"],[afterimage,"LONDON / 23:58","Closing sequence"],[velocity,"BARCELONA / 02:11","Mainstage transmission"]
-        ].map((r,i)=><motion.button {...reveal} key={r[1]} onClick={()=>setActiveReel(activeReel===i?null:i)} className="group relative aspect-[9/16] w-[72vw] max-w-[310px] shrink-0 snap-center overflow-hidden rounded-md border border-border bg-card text-left">
+          [summerDays,"BERLIN / 04:17","Summer Days"],[lostVoices,"AMSTERDAM / 01:42","Lost Voices"],[invisible,"LONDON / 23:58","Invisible"],[beamingLights,"BARCELONA / 02:11","Beaming Lights"]
+        ].map((r,i)=><motion.button {...reveal} key={r[1]} onClick={()=>{const next=activeReel===i?null:i;setActiveReel(next);if(next!==null){setTrack(i);setPlaying(true);}}} className="group relative aspect-[9/16] w-[72vw] max-w-[310px] shrink-0 snap-center overflow-hidden rounded-md border border-border bg-card text-left">
           <img src={r[0]} loading="lazy" width={1024} height={1280} alt={r[2]} className="h-full w-full object-cover transition-transform duration-700 group-hover:scale-105" /><div className="absolute inset-0 bg-gradient-to-t from-background via-transparent to-background/20" />
           <div className="absolute inset-0 grid place-items-center">{activeReel===i?<CirclePause className="h-14 w-14 text-primary"/>:<CirclePlay className="h-14 w-14 text-primary"/>}</div>
           <div className="absolute inset-x-4 bottom-4"><Waveform playing={activeReel===i} compact/><p className="mt-2 font-display text-lg font-bold uppercase">{r[2]}</p><span className="text-[9px] text-primary">{r[1]}</span></div>
